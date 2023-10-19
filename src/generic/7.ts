@@ -1,24 +1,20 @@
 /*
-  У вас є тип Form, який містить інформацію про форму, включаючи поле errors. 
-  Ви хочете створити новий тип Params, який включає всі поля з Form, крім errors.
+  У вас є перелік UserRole, який використовується для класифікації користувачів у вашому додатку.
+  Ви хочете створити об'єкт RoleDescription, який зіставлятиме кожну роль користувача з її описом.
 */
 
-type Errors = {
-  email?: string[];
-  firstName?: string[];
-  lastName?: string[];
-  phone?: string[];
-};
+export enum UserRole {
+  admin = "admin",
+  editor = "editor",
+  guest = "guest",
+}
 
-type Form = {
-  email: string | null;
-  firstName: string | null;
-  lastName: string | null;
-  phone: string | null;
-  errors: Errors;
+type UserRolesStatuses = Record<UserRole, string>;
+// Замініть наступний код на версію за допомогою Record
+const RoleDescription: UserRolesStatuses = {
+  [UserRole.admin]: "Admin User",
+  [UserRole.editor]: "Editor User",
+  [UserRole.guest]: "Guest User",
 };
-
-// Реалізуйте Params так, щоб унеможливити поле 'errors' з типу Form
-type Params = Omit<Form, "errors">;
 
 export {};
